@@ -93,7 +93,7 @@ const Home = (namew) =>{
       {apiData.map((el)=>{
           return(
 
-              <div className="grid-item"   ><ProductCard id={el._id} name={el.name}  price={el.price} company={el.company}  /></div>
+              <div className="grid-item"   ><ProductCard id={el.id} name={el.name}  price={el.price} company={el.company}  /></div>
 
           )
       })}

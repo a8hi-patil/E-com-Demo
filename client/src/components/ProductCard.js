@@ -12,7 +12,7 @@ const ProductCard = ({id,name,price,company}) =>{
     const clickHandler = (namew) =>{
 
     navigate(`/edit/${namew}`)
-    console.log("id",namew)
+    console.log("id -> ",namew)
 
     }
     return(

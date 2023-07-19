@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom"; 
 import axios from "axios";
 const EditProduct = () =>{
+
+
     const [productData, setProductData] = useState({})
     
 
@@ -35,8 +37,10 @@ const EditProduct = () =>{
       axios.get(`http://127.0.0.1:5000/api/product/${id}`)
       .then(function (response) {
         // handle success
-        console.log("ll",response.data);
-        setProductData(response.data)
+        setProductData(response.data[0])
+        console.log("Get Single 1  ->",response.data);
+        console.log("Get Single  ->",productData);
+        
       })
       
       

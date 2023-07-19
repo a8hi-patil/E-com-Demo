@@ -1,4 +1,13 @@
 const cartReducer = (state, action) => {
+
+    if (action.type === "CLEAR_CART") {
+        return {
+            ...state,
+            cart: [],
+        };
+    }
+    
+
     if (action.type === "ADD_TO_CART") {
         let { id,name,price,company } = action.payload;
         
@@ -35,10 +44,14 @@ const cartReducer = (state, action) => {
                 cart: [...state.cart, cartProduct]
             };
         }
-    
+        
 
 
     return state;
 };
+
+
+
+
 }
 export default cartReducer;

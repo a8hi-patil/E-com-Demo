@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-const connectDB = require('./config/dbConnection')
+const con = require('./config/dbConnectionSQL')
+
+
 var cors = require('cors')
 app.use(cors())
-connectDB();
+
 const port =  5000;
 app.use(express.json())
 app.use('/api/product',require('./routes/productRoutes'))
