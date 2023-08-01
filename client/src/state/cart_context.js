@@ -27,6 +27,7 @@ const CartProvider = ({ children }) => {
   const addToCart = (id,name,price,company) => {
     alert(`${name} Added to cart`)
     dispatch({ type: "ADD_TO_CART",  payload: { id,name,price,company } });
+    dispatch({ type: "CART_TOTAL_PRICE" });
     
   };
 
@@ -34,10 +35,12 @@ const CartProvider = ({ children }) => {
 
   const setDecrease = (id) => {
     dispatch({ type: "SET_DECREMENT", payload: id });
+    dispatch({ type: "CART_TOTAL_PRICE" });
   };
 
   const setIncrement = (id) => {
     dispatch({ type: "SET_INCREMENT", payload: id });
+    dispatch({ type: "CART_TOTAL_PRICE"});
   };
 
   // to remove the individual item from cart

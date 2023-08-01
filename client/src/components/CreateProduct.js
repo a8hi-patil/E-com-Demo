@@ -11,13 +11,16 @@ const CreateProduct = () =>{
         let name = e.target.name.value
         let price = e.target.price.value
         let company = e.target.company.value
+        let category = e.target.category.value
         console.log("op",name,price,company)
         let newProduct={name,
         price,
-        company}
+        company,
+        category}
         console.log(newProduct)
 
-        axios.post('http://127.0.0.1:5000/api/product', newProduct)
+        // axios.post('http://127.0.0.1:5000/api/product', newProduct)
+        axios.post('http://172.22.115.8:5000/api/product', newProduct)
           .then(function (response) {
             console.log(response);
             alert("Product Added Successfully")
@@ -41,6 +44,9 @@ const CreateProduct = () =>{
 
       <label for="lname">Company</label>
       <input className="inputform" type="text" id="lname" name="company"  placeholder="Company" value={productData.company} />
+
+      <label for="lname">Category</label>
+      <input className="inputform" type="text" id="lname" name="category"  placeholder="Category" value={productData.company} />
   
       
     

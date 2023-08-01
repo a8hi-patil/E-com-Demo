@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../state/cart_context"
 
-const ProductCard = ({id,name,price,company}) =>{
+const ProductCard = ({id,name,price,company,category}) =>{
   console.log("id",id,name,price,company)
     const { addToCart } = useCartContext()
 
@@ -23,6 +23,7 @@ const ProductCard = ({id,name,price,company}) =>{
       <h4><b>{name}</b></h4>
       <h5><b>Rs.{price}/-</b></h5>
       <h5><b>{company}</b></h5>
+      <h5><b>{category}</b></h5>
       <button onClick={()=>{addToCart(id,name,price,company)}} > Add To Card</button>
       <button onClick={()=>{clickHandler(id)}}  >Edit</button> 
     </div>

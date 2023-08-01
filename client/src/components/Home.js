@@ -78,7 +78,7 @@ const Home = (namew) =>{
     
   useEffect(()=>{
     
-    axios.get('http://127.0.0.1:5000/api/product')
+    axios.get('http://172.22.115.8:5000/api/product')
   .then(function (response) {
     // handle success
     console.log("ll",response.data);
@@ -93,7 +93,7 @@ const Home = (namew) =>{
       {apiData.map((el)=>{
           return(
 
-              <div className="grid-item"   ><ProductCard id={el.id} name={el.name}  price={el.price} company={el.company}  /></div>
+              <div className="grid-item"   ><ProductCard id={el.id} name={el.name}  price={el.price} company={el.company} category={el.category}  /></div>
 
           )
       })}

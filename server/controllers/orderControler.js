@@ -1,18 +1,19 @@
 
 
 const con = require("../config/dbConnectionSQL");
-
+// let hitcount = 1
 const createOrder = async (req, res) => {
-      console.log("Body is ", req.body);
-      const { order_ids } = req.body;   
+      // console.log("Body is ", req.body);
+      // console.log("-----",hitcount)   
+      // hitcount=hitcount+1;
+      let arr =  req.body
+      arr = JSON.stringify(arr)
       
-
-    
-        await con.query(
-          `INSERT INTO orders (order_ids) VALUES ('${order_ids}')`,
-          (err, rows) => {
+        const query =`INSERT INTO mytable (JsonData) VALUES ('${arr}');`;
+        // console.log(query)
+        await con.query(query, (err, rows) => {
             if(!err){
-                 res.status(200).send("Okay")
+                 res.status(201).send("Okay")
                 }
             else{ 
                 console.log('Error')
@@ -20,9 +21,14 @@ const createOrder = async (req, res) => {
            
           }
         );
-
-        // res.status(200).send("Okay")
       
     };
 
-module.exports = {createOrder} 
+    const getAllOrders = async (req, res) => {
+      await con.query("select * from mytable", (err, rows) => {
+        console.log(rows)
+        res.status(200).send(rows);
+      });
+    };
+
+module.exports = {createOrder,getAllOrders} 

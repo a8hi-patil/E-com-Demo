@@ -17,9 +17,10 @@ const EditProduct = () =>{
         let name = e.target.name.value
         let price = e.target.price.value
         let company = e.target.company.value
-        console.log("op",name,price,company)
+        let category = e.target.category.value
+        console.log("op",name,price,company,category)
 
-        let newProduct ={name,price,company}
+        let newProduct ={name,price,company,category}
 
         axios.put(`http://127.0.0.1:5000/api/product/${id}`, newProduct)
           .then(function (response) {
@@ -76,6 +77,12 @@ const EditProduct = () =>{
             // console.log(e.target.value)
             setProductData({company:e.target.value})
             }} placeholder="Company" value={productData.company} />
+
+          <label for="lname">Category</label>
+          <input className="inputform" type="text" id="lname" name="category" onChange={(e)=>{
+            // console.log(e.target.value)
+            setProductData({category:e.target.value})
+            }} placeholder="Company" value={productData.category} />
       
           
         

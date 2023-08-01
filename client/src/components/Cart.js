@@ -8,13 +8,13 @@ import { useNavigate } from "react-router-dom";
 const Cart = () =>    {
   // const { clearCart } = useCartContext()
   const navigate = useNavigate();
-        const { cart, clearCart, total_price, shipping_fee } = useCartContext();
-        console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
+        const { cart, clearCart, total_price, shipping_fee,setDecrease,setIncrement } = useCartContext();
+        
         
         if (cart.length === 0) {
           return (
             
-              <h3>No Cart in Item </h3>
+              <h3>No Item in Cart </h3>
             
           );
         }
@@ -43,27 +43,30 @@ const Cart = () =>    {
         })
         order_ids = order_ids.join(",")
         console.log("Cart ids",order_ids)
-
+        // console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
         const newProduct={order_ids}
 
-        axios.post('http://127.0.0.1:5000/api/product/order', newProduct)
+        axios.post('http://172.22.115.8:5000/api/product/order', cart)
         .then(function (response) {
           console.log(response);
           alert("Order Placed Succcedfully")
           clearCart()
           
-    
+          
           navigate('/')
           
           
           
         })
         .catch(function (error) {
+          clearCart()
           console.log(error);
         });
 
         }    
     } >Place Order</button>
+
+    <h2>Total Amount {total_price}</h2>
       </div>
             </>
           

@@ -7,15 +7,16 @@ const getAllProducts = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-//   console.log("Body is ", req.body);
-  const { name, price, company } = req.body;
+  console.log("Body is Create ", req.body);
+  const { name, price, company,category } = req.body;
 
-  if (!name || !company || !price) {
+  if (!name || !company || !price || !category) {
     res.status(400);
     throw new Error("All fields are mandatory");
   } else {
+    console.log(`INSERT INTO products (name,company,price,category) VALUES ('${name}','${company}',${price},'${category}')`)
     await con.query(
-      `INSERT INTO products (name,company,price) VALUES ('${name}','${company}',${price})`,
+      `INSERT INTO products (name,company,price,category) VALUES ('${name}','${company}',${price},'${category}')`,
       (err, rows) => {
         res.status(200).json(rows);
       }
@@ -26,10 +27,10 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
 //   console.log(req.params);
 
-  const { name, price, company } = req.body;
+  const { name, price, company,category } = req.body;
 
   await con.query(
-    `UPDATE products SET name = '${name}',company = '${company}',price = '${price}' WHERE ID = ${req.params.id}`,
+    `UPDATE products SET name = '${name}',company = '${company}',price = '${price}',category = '${category}' WHERE ID = ${req.params.id}`,
     (err, rows) => {
       if (!err) {
         res.send("okay");
